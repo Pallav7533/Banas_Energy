@@ -60,6 +60,143 @@
   --input: 350 20% 28%; --ring: 32 78% 52%;
   --chart-1: 32 78% 52%; --chart-2: 350 67% 55%; --chart-3: 160 35% 54%; --chart-4: 29 35% 68%; --chart-5: 350 40% 70%;
 }
+
+/* Banas Energy visual system: quiet editorial, built around the real mark. */
+:root {
+  --background: 0 0% 100%; --foreground: 345 48% 18%; --border: 350 15% 87%;
+  --card: 0 0% 100%; --card-foreground: 345 48% 18%; --card-border: 350 15% 87%;
+  --sidebar: 0 0% 100%; --sidebar-foreground: 345 48% 18%; --sidebar-border: 350 15% 87%;
+  --sidebar-primary: 345 65% 25%; --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 350 18% 95%; --sidebar-accent-foreground: 345 48% 18%; --sidebar-ring: 345 65% 25%;
+  --popover: 0 0% 100%; --popover-foreground: 345 48% 18%; --popover-border: 350 15% 87%;
+  --primary: 345 65% 25%; --primary-foreground: 0 0% 100%;
+  --secondary: 350 18% 95%; --secondary-foreground: 345 48% 18%;
+  --muted: 350 18% 95%; --muted-foreground: 345 12% 42%;
+  --accent: 350 18% 95%; --accent-foreground: 345 48% 18%;
+  --destructive: 0 68% 42%; --destructive-foreground: 0 0% 100%;
+  --input: 350 15% 83%; --ring: 345 65% 25%;
+  --chart-1: 345 65% 25%; --chart-2: 350 20% 55%; --chart-3: 345 12% 42%; --chart-4: 350 15% 75%; --chart-5: 345 28% 35%;
+  --app-font-sans: 'DM Sans', sans-serif; --app-font-serif: 'Playfair Display', Georgia, serif; --app-font-mono: 'DM Mono', monospace;
+}
+.dark {
+  --background: 345 28% 12%; --foreground: 0 0% 97%; --border: 345 18% 28%;
+  --card: 345 25% 15%; --card-foreground: 0 0% 97%; --card-border: 345 18% 28%;
+  --sidebar: 345 28% 12%; --sidebar-foreground: 0 0% 97%; --sidebar-border: 345 18% 28%;
+  --sidebar-primary: 350 18% 95%; --sidebar-primary-foreground: 345 48% 18%; --sidebar-accent: 345 20% 22%;
+  --sidebar-accent-foreground: 0 0% 97%; --sidebar-ring: 350 18% 95%;
+  --popover: 345 25% 15%; --popover-foreground: 0 0% 97%; --popover-border: 345 18% 28%;
+  --primary: 350 18% 95%; --primary-foreground: 345 48% 18%; --secondary: 345 20% 22%; --secondary-foreground: 0 0% 97%;
+  --muted: 345 20% 22%; --muted-foreground: 350 12% 72%; --accent: 345 20% 22%; --accent-foreground: 0 0% 97%;
+  --destructive: 0 60% 45%; --destructive-foreground: 0 0% 100%; --input: 345 18% 28%; --ring: 350 18% 95%;
+  --chart-1: 350 18% 95%; --chart-2: 350 20% 65%; --chart-3: 345 12% 72%; --chart-4: 350 15% 48%; --chart-5: 345 28% 62%;
+}
+body { background:#fff; color:#451625; }
+.topline { background:#641b30; color:#fff; }
+.navbar { background:rgba(255,255,255,.97); border-bottom-color:#eee8e9; }
+.nav-inner { min-height:78px; }
+.brand-logo { mix-blend-mode:multiply; }
+.nav-links a { color:#4b2632; }
+.nav-links a:hover,.nav-links a[aria-current=page] { color:#79243b; }
+.nav-cta,.button-primary { background:#741e36; border-radius:3px; color:#fff; }
+.nav-cta:hover,.button-primary:hover { background:#56162a; }
+.button-secondary { border:1px solid #cfc3c6; background:#fff; border-radius:3px; color:#541b2d; }
+.menu-button { border-radius:3px; color:#541b2d; border-color:#ded4d6; }
+.hero { min-height:600px; background:#3f1928; position:relative; }
+.hero:before { display:none; }
+.hero-image { position:absolute; inset:0; background:linear-gradient(90deg,rgba(48,18,30,.76) 0%,rgba(48,18,30,.43) 45%,rgba(48,18,30,.05) 100%),url('/images/solar-home-hero.jpg') center 56%/cover; }
+.hero-content { position:relative; z-index:1; }
+.hero-copy { max-width:600px; padding:112px 0 120px; }
+.eyebrow { color:#7a293f; letter-spacing:.13em; }
+.hero .eyebrow { color:#f3e9ec; }
+.hero h1 { font-family:var(--app-font-sans); font-size:clamp(46px,6vw,76px); line-height:1.04; font-weight:600; letter-spacing:-.045em; text-transform:none; }
+.hero-accent { color:#fff; }
+.hero p { max-width:470px; font-size:17px; line-height:1.65; color:#f5ecee; }
+.section { padding:76px 0; }
+.section-soft { background:#f7f5f5; }
+.section-heading h2,.page-intro h1 { font-family:var(--app-font-sans); font-weight:600; letter-spacing:-.035em; color:#4a1929; }
+.section-heading p,.page-intro p { color:#6d5b61; }
+.text-link { color:#741e36; }
+.image-frame { border-radius:2px; background:#f3eff0; }
+.photo-caption { border-radius:2px; color:#4b2632; }
+.feature-icon { border-radius:3px; background:#f4eff1; color:#741e36; }
+.steps { background:#e8dfe2; border-color:#e8dfe2; }
+.step { background:#fff; }
+.step-num { color:#741e36; }
+.cta-band { background:#641b30; border-radius:2px; }
+.cta-band h2 { font-family:var(--app-font-sans); font-size:clamp(26px,3vw,36px); font-weight:600; letter-spacing:-.03em; }
+.page-intro { background:#f7f5f5; }
+.page-intro-art { border-radius:2px; }
+.prose h2,.prose h3 { color:#4a1929; }
+.article-card,.project-card,.contact-card,.calc-panel,.calc-result,.review-empty,.benefit-card { background:#fff; border-color:#e9e2e4; }
+.article-card small,.project-copy small { color:#741e36; }
+.disclaimer { background:#f7f5f5; border-left-color:#741e36; color:#66575c; }
+.review-empty-icon { border-radius:3px; background:#f4eff1; color:#741e36; }
+.field input,.field textarea,.field select { background:#fff; border-color:#d9cdd0; border-radius:2px; }
+.contact-detail svg { color:#741e36; }
+.calc-result { background:#f7f5f5; }
+.metric { background:#fff; }
+.footer { background:#461827; }
+.footer h3 { color:#f0e4e8; }
+.footer-logo { border-radius:2px; }
+.footer-map,.location-preview iframe { filter:grayscale(1); }
+.brand-marquee-section { background:#fff; border-color:#eee8e9; }
+.brand-marquee-heading h2 { font-family:var(--app-font-sans); }
+.brand-marquee-heading p,.marquee-note { color:#71656a; }
+.marquee-name { color:#541b2d; border-color:#eee8e9; }
+.marquee-name svg { color:#741e36; }
+.marquee-viewport { scrollbar-color:#b9aab0 #f5f2f3; }
+.benefit-card h3 { color:#4a1929; }
+.benefit-card p,.location-preview p { color:#6d5b61; }
+.preview-photo small { color:#f4e7eb; }
+.review-preview { background:#fff; border-color:#e9e2e4; }
+.review-preview-mark { border-radius:3px; background:#f4eff1; color:#741e36; }
+.review-preview h2 { font-family:var(--app-font-sans); }
+.home-intro-grid,.home-contact-grid,.home-next-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,7vw,100px); align-items:center; }
+.home-intro h2,.home-solar h2,.home-next h2,.home-contact h2 { margin:12px 0 16px; color:#4a1929; font:600 clamp(32px,4vw,49px)/1.1 var(--app-font-sans); letter-spacing:-.04em; }
+.home-intro p,.home-contact p { max-width:450px; color:#6d5b61; line-height:1.75; margin:0 0 22px; }
+.home-intro-grid>img { width:100%; height:390px; object-fit:cover; }
+.home-solar { background:#f7f5f5; }
+.home-solar-heading { display:flex; align-items:end; justify-content:space-between; gap:32px; margin-bottom:26px; }
+.home-solar-heading p { max-width:330px; color:#6d5b61; font-size:14px; line-height:1.6; }
+.home-solar-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:18px; }
+.home-solar-photo { position:relative; height:340px; overflow:hidden; color:#fff; text-decoration:none; background:#3e2630; }
+.home-solar-photo img { width:100%; height:100%; object-fit:cover; transition:transform .35s; }
+.home-solar-photo:hover img { transform:scale(1.025); }
+.home-solar-photo:after { content:""; position:absolute; inset:45% 0 0; background:linear-gradient(transparent,rgba(38,17,26,.7)); }
+.home-solar-photo span { position:absolute; z-index:1; bottom:20px; left:22px; right:22px; display:flex; justify-content:space-between; align-items:center; font-size:16px; font-weight:600; }
+.home-solar-photo svg { flex:none; }
+.home-gallery-note { margin-top:16px; }
+.home-next { background:#fff; }
+.home-next p { color:#6d5b61; line-height:1.7; margin:0 0 24px; }
+.home-facts { border-top:1px solid #e8dfe2; }
+.home-facts>div { display:flex; align-items:center; gap:22px; padding:20px 0; border-bottom:1px solid #e8dfe2; }
+.home-facts span { color:#741e36; font-size:13px; font-weight:700; letter-spacing:.1em; }
+.home-facts p { margin:0; color:#51434a; }
+.home-trust { padding:32px 0; background:#f7f5f5; }
+.home-trust-inner { display:flex; justify-content:space-between; align-items:center; gap:30px; }
+.home-trust h2 { margin:7px 0; font:600 clamp(22px,3vw,30px)/1.2 var(--app-font-sans); color:#4a1929; }
+.home-trust p { margin:0; color:#6d5b61; }
+.home-contact-grid iframe { width:100%; height:300px; border:1px solid #e4dadd; filter:grayscale(1); }
+.home-contact-grid .hero-actions { gap:10px; }
+.button-primary:focus-visible,.button-secondary:focus-visible,.text-link:focus-visible,.nav-links a:focus-visible,.mobile-nav a:focus-visible,.home-solar-photo:focus-visible { outline:3px solid #a65d70; outline-offset:3px; }
+@media(max-width:720px) {
+ .hero { min-height:560px; }
+ .hero-image { background:linear-gradient(90deg,rgba(48,18,30,.74),rgba(48,18,30,.32)),url('/images/solar-home-hero.jpg') 58% center/cover; }
+ .hero-copy { padding:82px 0; }
+ .home-intro-grid,.home-contact-grid,.home-next-grid,.home-solar-grid { grid-template-columns:1fr; }
+ .home-intro-grid>img { height:300px; }
+ .home-solar-heading { display:block; }
+ .home-solar-heading p { margin-bottom:0; }
+ .home-solar-photo { height:270px; }
+ .home-trust-inner { display:block; }
+ .home-trust-inner .text-link { margin-top:18px; }
+}
+@media(max-width:440px) {
+ .hero h1 { font-size:44px; }
+ .home-solar-photo { height:240px; }
+ .home-intro-grid>img { height:250px; }
+ .home-contact-grid .hero-actions>* { width:auto; }
+}
 .nav-links { gap:clamp(9px,1.25vw,18px); }
 .nav-links a { white-space:nowrap; font-size:clamp(11px,.95vw,13px); }
 .nav-inner { gap:clamp(10px,1.3vw,20px); }
@@ -803,3 +940,97 @@ body { font-family: var(--app-font-sans); background:#faf7f1; color:#411925; }
   .marquee-set[aria-hidden="true"] { display:none; }
   .marquee-name { min-width:0; flex:1 1 170px; }
 }
+
+/* Final cascade: compact burgundy-and-white system, including scaffold tokens. */
+:root {
+  --background: 0 0% 100%; --foreground: 345 48% 18%; --border: 350 15% 87%;
+  --card: 0 0% 100%; --card-foreground: 345 48% 18%; --card-border: 350 15% 87%;
+  --sidebar: 0 0% 100%; --sidebar-foreground: 345 48% 18%; --sidebar-border: 350 15% 87%;
+  --sidebar-primary: 345 65% 25%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 350 18% 95%; --sidebar-accent-foreground: 345 48% 18%; --sidebar-ring: 345 65% 25%;
+  --popover: 0 0% 100%; --popover-foreground: 345 48% 18%; --popover-border: 350 15% 87%;
+  --primary: 345 65% 25%; --primary-foreground: 0 0% 100%; --secondary: 350 18% 95%; --secondary-foreground: 345 48% 18%;
+  --muted: 350 18% 95%; --muted-foreground: 345 12% 42%; --accent: 350 18% 95%; --accent-foreground: 345 48% 18%;
+  --destructive: 0 68% 42%; --destructive-foreground: 0 0% 100%; --input: 350 15% 83%; --ring: 345 65% 25%;
+  --chart-1: 345 65% 25%; --chart-2: 350 20% 55%; --chart-3: 345 12% 42%; --chart-4: 350 15% 75%; --chart-5: 345 28% 35%;
+  --app-font-sans: 'DM Sans', sans-serif; --app-font-serif: 'Playfair Display', Georgia, serif; --app-font-mono: 'DM Mono', monospace;
+}
+.dark { --background:345 28% 12%;--foreground:0 0% 97%;--border:345 18% 28%;--card:345 25% 15%;--card-foreground:0 0% 97%;--card-border:345 18% 28%;--sidebar:345 28% 12%;--sidebar-foreground:0 0% 97%;--sidebar-border:345 18% 28%;--sidebar-primary:350 18% 95%;--sidebar-primary-foreground:345 48% 18%;--sidebar-accent:345 20% 22%;--sidebar-accent-foreground:0 0% 97%;--sidebar-ring:350 18% 95%;--popover:345 25% 15%;--popover-foreground:0 0% 97%;--popover-border:345 18% 28%;--primary:350 18% 95%;--primary-foreground:345 48% 18%;--secondary:345 20% 22%;--secondary-foreground:0 0% 97%;--muted:345 20% 22%;--muted-foreground:350 12% 72%;--accent:345 20% 22%;--accent-foreground:0 0% 97%;--destructive:0 60% 45%;--destructive-foreground:0 0% 100%;--input:345 18% 28%;--ring:350 18% 95%; }
+body { background:#fff; color:#451625; }
+.topline { background:#641b30; color:#fff; }
+.navbar { background:rgba(255,255,255,.97); border-bottom-color:#eee8e9; }
+.nav-inner { min-height:78px; }
+.nav-links a { color:#4b2632; }
+.nav-links a:hover,.nav-links a[aria-current=page] { color:#79243b; }
+.nav-cta,.button-primary { background:#741e36; border-radius:3px; color:#fff; }
+.nav-cta:hover,.button-primary:hover { background:#56162a; }
+.button-secondary { border:1px solid #cfc3c6; background:#fff; border-radius:3px; color:#541b2d; }
+.menu-button { border-radius:3px; color:#541b2d; border-color:#ded4d6; }
+.hero { min-height:600px; background:#3f1928; position:relative; }
+.hero:before { display:none; }
+.hero-image { position:absolute; inset:0; background:linear-gradient(90deg,rgba(48,18,30,.76),rgba(48,18,30,.43) 45%,rgba(48,18,30,.05)),url('/images/solar-home-hero.jpg') center 56%/cover; }
+.hero-content { position:relative; z-index:1; }
+.hero-copy { max-width:600px; padding:112px 0 120px; }
+.eyebrow { color:#7a293f; letter-spacing:.13em; }
+.hero .eyebrow { color:#f3e9ec; }
+.hero h1 { font-family:var(--app-font-sans); font-size:clamp(46px,6vw,76px); line-height:1.04; font-weight:600; letter-spacing:-.045em; text-transform:none; }
+.hero-accent { color:#fff; }
+.hero p { max-width:470px; font-size:17px; line-height:1.65; color:#f5ecee; }
+.section { padding:76px 0; }
+.section-soft,.home-solar,.home-trust { background:#f7f5f5; }
+.section-heading h2,.page-intro h1 { font-family:var(--app-font-sans); font-weight:600; letter-spacing:-.035em; color:#4a1929; }
+.section-heading p,.page-intro p { color:#6d5b61; }
+.text-link { color:#741e36; }
+.image-frame { border-radius:2px; }
+.feature-icon,.review-preview-mark,.review-empty-icon { border-radius:3px; background:#f4eff1; color:#741e36; }
+.steps { background:#e8dfe2; border-color:#e8dfe2; }
+.step,.article-card,.project-card,.contact-card,.calc-panel,.calc-result,.review-empty,.benefit-card,.review-preview { background:#fff; border-color:#e9e2e4; }
+.step-num,.article-card small,.project-copy small { color:#741e36; }
+.cta-band { background:#641b30; border-radius:2px; }
+.cta-band h2 { font-family:var(--app-font-sans); font-weight:600; }
+.page-intro { background:#f7f5f5; }
+.prose h2,.prose h3 { color:#4a1929; }
+.disclaimer { background:#f7f5f5; border-left-color:#741e36; color:#66575c; }
+.field input,.field textarea,.field select { background:#fff; border-color:#d9cdd0; border-radius:2px; }
+.contact-detail svg { color:#741e36; }
+.calc-result { background:#f7f5f5; }
+.metric { background:#fff; }
+.footer { background:#461827; }
+.footer h3 { color:#f0e4e8; }
+.footer-map,.location-preview iframe { filter:grayscale(1); }
+.home-intro-grid,.home-contact-grid,.home-next-grid { display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,7vw,100px); align-items:center; }
+.home-intro h2,.home-solar h2,.home-next h2,.home-contact h2 { margin:12px 0 16px; color:#4a1929; font:600 clamp(32px,4vw,49px)/1.1 var(--app-font-sans); letter-spacing:-.04em; }
+.home-intro p,.home-contact p { max-width:450px; color:#6d5b61; line-height:1.75; margin:0 0 22px; }
+.home-intro-grid>img { width:100%; height:390px; object-fit:cover; }
+.home-solar-heading { display:flex; align-items:end; justify-content:space-between; gap:32px; margin-bottom:26px; }
+.home-solar-heading p { max-width:330px; color:#6d5b61; font-size:14px; line-height:1.6; }
+.home-solar-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:18px; }
+.home-solar-photo { position:relative; height:340px; overflow:hidden; color:#fff; text-decoration:none; background:#3e2630; }
+.home-solar-photo img { width:100%; height:100%; object-fit:cover; transition:transform .35s; }
+.home-solar-photo:hover img { transform:scale(1.025); }
+.home-solar-photo:after { content:""; position:absolute; inset:45% 0 0; background:linear-gradient(transparent,rgba(38,17,26,.7)); }
+.home-solar-photo span { position:absolute; z-index:1; bottom:20px; left:22px; right:22px; display:flex; justify-content:space-between; align-items:center; font-size:16px; font-weight:600; }
+.home-gallery-note { margin-top:16px; }
+.home-next p { color:#6d5b61; line-height:1.7; margin:0 0 24px; }
+.home-facts { border-top:1px solid #e8dfe2; }
+.home-facts>div { display:flex; align-items:center; gap:22px; padding:20px 0; border-bottom:1px solid #e8dfe2; }
+.home-facts span { color:#741e36; font-size:13px; font-weight:700; letter-spacing:.1em; }
+.home-facts p { margin:0; color:#51434a; }
+.home-trust { padding:32px 0; }
+.home-trust-inner { display:flex; justify-content:space-between; align-items:center; gap:30px; }
+.home-trust h2 { margin:7px 0; font:600 clamp(22px,3vw,30px)/1.2 var(--app-font-sans); color:#4a1929; }
+.home-trust p { margin:0; color:#6d5b61; }
+.home-contact-grid iframe { width:100%; height:300px; border:1px solid #e4dadd; filter:grayscale(1); }
+.button-primary:focus-visible,.button-secondary:focus-visible,.text-link:focus-visible,.nav-links a:focus-visible,.mobile-nav a:focus-visible,.home-solar-photo:focus-visible { outline:3px solid #a65d70; outline-offset:3px; }
+@media(max-width:720px) {
+ .hero { min-height:560px; }
+ .hero-image { background:linear-gradient(90deg,rgba(48,18,30,.74),rgba(48,18,30,.32)),url('/images/solar-home-hero.jpg') 58% center/cover; }
+ .hero-copy { padding:82px 0; }
+ .home-intro-grid,.home-contact-grid,.home-next-grid,.home-solar-grid { grid-template-columns:1fr; }
+ .home-intro-grid>img { height:300px; }
+ .home-solar-heading { display:block; }
+ .home-solar-heading p { margin-bottom:0; }
+ .home-solar-photo { height:270px; }
+ .home-trust-inner { display:block; }
+ .home-trust-inner .text-link { margin-top:18px; }
+}
+@media(max-width:440px) { .home-solar-photo{height:240px}.home-intro-grid>img{height:250px} }

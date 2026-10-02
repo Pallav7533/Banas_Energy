@@ -1,0 +1,1 @@
+- [Banas Energy visual direction](banas-energy-visual-direction.md) — Keep the site burgundy-white, photo-forward, and simple, with concise homepage copy.
