@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Banas Energy"
+description = "A responsive residential rooftop solar website for Banas Energy Pvt. Ltd., with separate company, solutions, projects, reviews, blog and contact pages, an indicative savings calculator, and direct WhatsApp enquiries."
+version = "1.0.0"
+id = "artifacts/banas-energy"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25075
+
+[services.development]
+run = "pnpm --filter @workspace/banas-energy run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/banas-energy", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/banas-energy/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25075"
+BASE_PATH = "/"
