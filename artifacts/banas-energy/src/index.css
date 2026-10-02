@@ -1034,3 +1034,18 @@ body { background:#fff; color:#451625; }
  .home-trust-inner .text-link { margin-top:18px; }
 }
 @media(max-width:440px) { .home-solar-photo{height:240px}.home-intro-grid>img{height:250px} }
+
+.topline-inner { position:relative; padding-right:42px; }
+.topline-actions { display:flex; align-items:center; }
+.topline-contact { display:flex; align-items:center; gap:9px; white-space:nowrap; }
+.topline-dismiss { position:absolute; right:0; top:50%; transform:translateY(-50%); display:grid; place-items:center; width:30px; height:30px; padding:0; border:0; border-radius:3px; background:transparent; color:inherit; cursor:pointer; }
+.topline-dismiss:hover { background:rgba(255,255,255,.14); }
+.topline-dismiss:focus-visible { outline:2px solid #fff; outline-offset:2px; }
+@media(max-width:720px) {
+  .topline-inner { justify-content:flex-end; min-height:36px; padding-right:38px; }
+  .topline-message { display:none; }
+  .topline-contact { font-size:11px; }
+}
+@media(max-width:440px) {
+  .topline-contact a[href^="mailto:"], .topline-divider { display:none; }
+}

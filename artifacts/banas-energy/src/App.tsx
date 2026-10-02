@@ -63,12 +63,33 @@ function Meta({ title, description }: { title: string; description: string }) {
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [toplineDismissed, setToplineDismissed] = useState(() => {
+    try {
+      return window.localStorage.getItem('banas-topline-dismissed') === 'true';
+    } catch {
+      return false;
+    }
+  });
   const [location] = useLocation();
   useEffect(() => setOpen(false), [location]);
   const links = [['Home', '/'], ['About Us', '/about'], ['Solutions', '/solutions'], ['Projects', '/projects'], ['Reviews', '/reviews'], ['Blog', '/blog'], ['Contact Us', '/contact']];
   const consultationLink = waLink('Hello Banas Energy, I would like a rooftop solar consultation for my home. Please guide me on the next step.');
+  const dismissTopline = () => {
+    setToplineDismissed(true);
+    try {
+      window.localStorage.setItem('banas-topline-dismissed', 'true');
+    } catch {
+      // Dismissal still works for this page view if browser storage is unavailable.
+    }
+  };
   return <>
-    <div className="topline"><div className="container topline-inner"><span>Local home-solar guidance for Banaskantha</span><span><a href={`tel:${PHONE.replace(/\s/g, '')}`}>{PHONE}</a> &nbsp;·&nbsp; <a href={`mailto:${EMAIL}`}>{EMAIL}</a></span></div></div>
+    {!toplineDismissed && <div className="topline"><div className="container topline-inner">
+      <span className="topline-message">Local home-solar guidance for Banaskantha</span>
+      <div className="topline-actions">
+        <span className="topline-contact"><a href={`tel:${PHONE.replace(/\s/g, '')}`}>{PHONE}</a><span className="topline-divider">·</span><a href={`mailto:${EMAIL}`}>{EMAIL}</a></span>
+        <button className="topline-dismiss" type="button" onClick={dismissTopline} aria-label="Hide contact bar" title="Hide this bar"><X size={16} /></button>
+      </div>
+    </div></div>}
     <header className="navbar"><div className="container nav-inner">
        <Link href="/" aria-label="Banas Energy home" data-testid="link-brand-home"><img className="brand-logo" src={brandImage} alt="Banas Energy" /></Link>
       <nav className="nav-links" aria-label="Main navigation">{links.map(([label, href]) => <Link key={href} href={href} aria-current={location === href ? 'page' : undefined}>{label}</Link>)}</nav>
@@ -186,19 +207,19 @@ function SolutionsPage() {
 }
 
 const projectImages = [
-  ['/images/home-evening.jpg','Home rooftop at dusk'],
-  ['/images/panels-detail.jpg','Panel layout on a residential roof'],
-  ['/images/rooftops-aerial.jpg','Rooftop solar in a residential setting'],
-  ['/images/homeowner-roof.jpg','A home-first solar conversation'],
-  ['/images/inverter.jpg','Inverter equipment in a home'],
-  ['/images/solar-home-hero.jpg','Sunlit home with rooftop panels']
+  { image: '/images/home-evening.jpg', title: 'Home rooftop at dusk', details: 'An evening view of a home with rooftop panels, showing how a solar array can sit within the wider look of a residential property. Roof condition, usable area and shade still need a site-specific check.' },
+  { image: '/images/panels-detail.jpg', title: 'Panel layout on a residential roof', details: 'A closer look at panel rows and spacing. The final number, orientation and mounting arrangement depend on roof dimensions, access paths and the position of rooftop equipment.' },
+  { image: '/images/rooftops-aerial.jpg', title: 'Rooftop solar from above', details: 'An overhead view that helps illustrate how open roof zones and obstructions affect layout planning. This is a visual example, not a surveyed address or completed installation.' },
+  { image: '/images/homeowner-roof.jpg', title: 'A home-first solar conversation', details: 'A homeowner looking over a roof is a reminder to start with the property itself: its condition, access, shade and the household’s electricity use.' },
+  { image: '/images/inverter.jpg', title: 'Inverter equipment in a home', details: 'The inverter is one part of a rooftop system. Its placement and the required electrical protections should be decided with the property and proposed system in mind.' },
+  { image: '/images/solar-home-hero.jpg', title: 'Sunlit home with rooftop panels', details: 'A residential scene to help picture solar at home. System capacity, expected generation and savings cannot be inferred from an image; they require household and site details.' }
 ];
 function ProjectsPage() {
   const [selected, setSelected] = useState<number | null>(null);
   return <Shell><Meta title="Illustrative rooftop solar gallery | Banas Energy" description="Illustrative residential rooftop solar imagery for homeowners. These are not Banas Energy installations or customer projects." />
     <Intro eyebrow="A visual guide" title="Imagine what rooftop solar can look like." text="This gallery uses illustrative imagery to help make residential solar easier to picture. It does not show Banas Energy installations, actual customers or specific completed projects." image="/images/rooftops-aerial.jpg" />
-    <section className="section"><div className="container"><p className="disclaimer" style={{marginBottom:28}}><strong>Illustrative imagery only.</strong> Every image and card below is generated illustrative material. None represents work completed by Banas Energy, a named location, an actual customer or a specified system.</p><div className="project-grid">{projectImages.map(([img,title],i)=><article className="project-card" key={title}><button onClick={()=>setSelected(i)} aria-label={`View illustrative image: ${title}`}><img src={img} alt={`Illustrative rooftop solar scene: ${title}`} /><div className="project-copy"><small>Illustrative imagery · not a Banas Energy project</small><h3>{title}</h3><p>A visual reference only. Actual system design depends on the property and assessment.</p></div></button></article>)}</div></div></section>
-    {selected !== null && <div className="modal-backdrop" role="presentation" onClick={()=>setSelected(null)}><section className="detail-modal" role="dialog" aria-modal="true" aria-labelledby="gallery-title" onClick={e=>e.stopPropagation()}><button className="modal-close" aria-label="Close detail" onClick={()=>setSelected(null)}><X size={20}/></button><img src={projectImages[selected][0]} alt={`Illustrative rooftop solar scene: ${projectImages[selected][1]}`} /><div className="eyebrow">Illustrative imagery only</div><h2 id="gallery-title" className="serif" style={{fontSize:32,fontWeight:500,margin:'9px 0'}}>A visual reference—not a company installation.</h2><p style={{lineHeight:1.7,color:'#75645e'}}>This generated image does not depict Banas Energy work, an actual customer or a named project. Your own home’s layout and requirements need individual discussion.</p><a className="button-primary" href={waLink(`Hello Banas Energy, I viewed the illustrative gallery and would like to discuss solar for my home.`)} target="_blank" rel="noreferrer">Ask about my home <ArrowRight size={16}/></a></section></div>}
+    <section className="section"><div className="container"><p className="disclaimer" style={{marginBottom:28}}><strong>Illustrative imagery only.</strong> Every image and card below is generated illustrative material. None represents work completed by Banas Energy, a named location, an actual customer or a specified system.</p><div className="project-grid">{projectImages.map(({ image, title, details },i)=><article className="project-card" key={title}><button onClick={()=>setSelected(i)} aria-label={`View illustrative image: ${title}`}><img src={image} alt={`Illustrative rooftop solar scene: ${title}`} /><div className="project-copy"><small>Illustrative imagery · not a Banas Energy project</small><h3>{title}</h3><p>{details}</p></div></button></article>)}</div></div></section>
+    {selected !== null && <div className="modal-backdrop" role="presentation" onClick={()=>setSelected(null)}><section className="detail-modal" role="dialog" aria-modal="true" aria-labelledby="gallery-title" onClick={e=>e.stopPropagation()}><button className="modal-close" aria-label="Close detail" onClick={()=>setSelected(null)}><X size={20}/></button><img src={projectImages[selected].image} alt={`Illustrative rooftop solar scene: ${projectImages[selected].title}`} /><div className="eyebrow">Illustrative imagery only</div><h2 id="gallery-title" className="serif" style={{fontSize:32,fontWeight:500,margin:'9px 0'}}>{projectImages[selected].title}</h2><p style={{lineHeight:1.7,color:'#75645e'}}>{projectImages[selected].details} This is not a Banas Energy installation or a customer project.</p><a className="button-primary" href={waLink(`Hello Banas Energy, I viewed the illustrative gallery and would like to discuss solar for my home.`)} target="_blank" rel="noreferrer">Ask about my home <ArrowRight size={16}/></a></section></div>}
     <CTA title="Your home is its own project." text="Talk through your roof and household needs with a local team." />
   </Shell>;
 }
