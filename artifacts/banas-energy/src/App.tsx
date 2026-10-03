@@ -125,24 +125,276 @@ function CTA({ title = 'A good solar conversation starts with your home.', text 
   return <div className="container" style={{ padding: '38px 0' }}><div className="cta-band"><div><h2>{title}</h2><p>{text}</p></div><a className="button-secondary" href={waLink(message)} target="_blank" rel="noreferrer">Message on WhatsApp <ArrowRight size={16} /></a></div></div>;
 }
 
+
 function BrandMarquee() {
-  const names = ['TATA POWER SOLAR', 'ADANI SOLAR', 'WAAREE', 'APSYSTEMS'];
-  return <section className="brand-marquee-section" aria-label="Solar brands and technologies homeowners may explore">
-    <div className="container brand-marquee-heading"><div><span className="eyebrow">Names of interest only</span><h2>Solar brands & technologies</h2></div><p>Not an affiliation, partnership or supply relationship.</p></div>
-    <div className="marquee-viewport" tabIndex={0} aria-label="Scrolling list of solar brands and technologies">
-      <div className="marquee-track">{[0,1].map(copy=><div className="marquee-set" key={copy} aria-hidden={copy === 1 ? 'true' : undefined}>{names.map(name=><span className="marquee-name" key={name}><Sun size={15}/>{name}</span>)}</div>)}</div>
-    </div>
-    <p className="marquee-note">Names shown for homeowner awareness only; no endorsement or supplier relationship is implied.</p>
-  </section>;
+  const brands = [
+    { name: 'Adani Solar', mark: 'ADANI', sub: 'SOLAR', color: '#E87524' },
+    { name: 'Tata Power Solar', mark: 'TATA', sub: 'POWER SOLAR', color: '#1767A8' },
+    { name: 'APsystems', mark: 'APsystems', sub: 'POWERING THE FUTURE', color: '#D63838' },
+    { name: 'Goldi Solar', mark: 'GOLDI', sub: 'SOLAR', color: '#33458C' },
+    { name: 'Waaree Energies', mark: 'WAAREE', sub: 'ENERGIES', color: '#16844A' },
+  ];
+
+  return (
+    <section
+      className="be-brands"
+      aria-label="Solar brands and technologies"
+    >
+      <style>{`
+        .be-brands {
+          background: #FAF8F5;
+          padding: 38px 0 26px;
+          overflow: hidden;
+          border-top: 1px solid #EDE3E5;
+          border-bottom: 1px solid #EDE3E5;
+        }
+
+        .be-brands-heading {
+          text-align: center;
+          padding: 0 20px;
+        }
+
+        .be-brands-kicker {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: #7A2947;
+          font-size: 10px;
+          font-weight: 800;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        .be-brands-kicker::before,
+        .be-brands-kicker::after {
+          content: "";
+          width: 22px;
+          height: 1px;
+          background: #B88A96;
+        }
+
+        .be-brands-title {
+          margin: 12px 0 9px;
+          color: #581C35;
+          font-size: clamp(23px, 3vw, 32px);
+          font-weight: 800;
+          letter-spacing: -0.7px;
+          line-height: 1.25;
+        }
+
+        .be-brands-description {
+          max-width: 490px;
+          margin: 0 auto;
+          color: #71666A;
+          font-size: 13px;
+          line-height: 1.8;
+        }
+
+        .be-brands-accent {
+          width: 42px;
+          height: 3px;
+          margin: 16px auto 0;
+          border-radius: 4px;
+          background: #7A2947;
+        }
+
+        .be-brands-viewport {
+          width: 100%;
+          overflow: hidden;
+          margin-top: 24px;
+          padding: 5px 0 10px;
+          -webkit-mask-image: linear-gradient(
+            to right, transparent, #000 4%, #000 96%, transparent
+          );
+          mask-image: linear-gradient(
+            to right, transparent, #000 4%, #000 96%, transparent
+          );
+        }
+
+        .be-brands-track {
+          display: flex;
+          width: max-content;
+          animation: be-brands-scroll 32s linear infinite;
+          will-change: transform;
+        }
+
+        .be-brands-viewport:hover .be-brands-track,
+        .be-brands-viewport:focus-within .be-brands-track {
+          animation-play-state: paused;
+        }
+
+        .be-brands-set {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 0 8px;
+          flex-shrink: 0;
+        }
+
+        .be-brand-card {
+          box-sizing: border-box;
+          display: flex;
+          flex: 0 0 176px;
+          width: 176px;
+          height: 76px;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          background: #FFFFFF;
+          border: 1px solid #EAE0E3;
+          border-radius: 10px;
+          box-shadow: 0 3px 12px rgba(88, 28, 53, 0.045);
+          transition: border-color .2s ease, transform .2s ease;
+        }
+
+        .be-brand-card:hover {
+          border-color: #A76B80;
+          transform: translateY(-3px);
+        }
+
+        .be-brand-mark {
+          font-size: 22px;
+          font-weight: 850;
+          letter-spacing: -0.7px;
+          line-height: 1.15;
+        }
+
+        .be-brand-sub {
+          margin-top: 6px;
+          color: #77676D;
+          font-size: 9px;
+          font-weight: 750;
+          letter-spacing: 1.3px;
+        }
+
+        .be-brands-foot {
+          max-width: 650px;
+          margin: 10px auto 0;
+          padding: 0 20px;
+          color: #83777B;
+          font-size: 10px;
+          line-height: 1.8;
+          text-align: center;
+        }
+
+        @keyframes be-brands-scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+
+        @media (max-width: 600px) {
+          .be-brands {
+            padding: 30px 0 22px;
+          }
+
+          .be-brands-title {
+            letter-spacing: -0.4px;
+          }
+
+          .be-brands-description {
+            font-size: 12px;
+          }
+
+          .be-brands-viewport {
+            margin-top: 19px;
+          }
+
+          .be-brands-set {
+            gap: 12px;
+          }
+
+          .be-brand-card {
+            flex-basis: 148px;
+            width: 148px;
+            height: 66px;
+            border-radius: 9px;
+          }
+
+          .be-brand-mark {
+            font-size: 19px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .be-brands-track {
+            animation: none;
+          }
+
+          .be-brand-card {
+            transition: none;
+          }
+        }
+      `}</style>
+
+      <div className="be-brands-heading">
+        <div className="be-brands-kicker">
+          Solar Industry
+        </div>
+
+        <h2 className="be-brands-title">
+          Solar Brands &amp; Technologies
+        </h2>
+
+        <p className="be-brands-description">
+          Explore established names in the solar energy industry.
+        </p>
+
+        <div className="be-brands-accent" />
+      </div>
+
+      <div
+        className="be-brands-viewport"
+        tabIndex={0}
+        aria-label="Scrolling solar brand names"
+      >
+        <div className="be-brands-track">
+          {[0, 1].map((copy) => (
+            <div
+              className="be-brands-set"
+              key={copy}
+              aria-hidden={copy === 1 ? true : undefined}
+            >
+              {brands.map((brand) => (
+                <div
+                  className="be-brand-card"
+                  key={brand.name}
+                  title={brand.name}
+                >
+                  <span
+                    className="be-brand-mark"
+                    style={{ color: brand.color }}
+                  >
+                    {brand.mark}
+                  </span>
+
+                  <span className="be-brand-sub">
+                    {brand.sub}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p className="be-brands-foot">
+        Brand names belong to their respective owners and are displayed
+        for general informational purposes only. Their inclusion does not
+        imply any partnership, endorsement or authorized dealership with
+        Banas Energy.
+      </p>
+    </section>
+  );
 }
 
 function HomePage() {
   return <Shell><Meta title="Banas Energy | Home rooftop solar in Banaskantha" description="Understand residential rooftop solar with Banas Energy, a local home-solar guide in Banaskantha, Gujarat." />
      <section className="hero"><div className="hero-image" role="img" aria-label="Illustrative residential rooftop solar in Gujarat" /><div className="container hero-content"><div className="hero-copy reveal"><div className="eyebrow">Home rooftop solar · Banaskantha</div><h1>Solar for your home.<br /><span className="hero-accent">Made clearer.</span></h1><p>Local guidance to help you understand rooftop solar and decide what makes sense for your home.</p><div className="hero-actions"><a className="button-primary" data-testid="link-home-consultation" href={waLink('Hello Banas Energy, I would like to discuss residential rooftop solar for my home.')} target="_blank" rel="noreferrer">Talk to Banas Energy <ArrowRight size={17} /></a><Link data-testid="link-home-calculator" className="button-secondary" href="/solutions#calculator">Try the solar calculator <Calculator size={17} /></Link></div></div></div></section>
+     <BrandMarquee />
      <section className="home-intro section"><div className="container home-intro-grid"><div><div className="eyebrow">A local starting point</div><h2>Good advice starts with your roof.</h2><p>Every home is different. We’ll help you ask the right questions about your electricity use, roof and options—without the jargon.</p><Link href="/about" className="text-link" data-testid="link-home-about">About Banas Energy <ArrowRight size={16} /></Link></div><img src="/images/homeowner-roof.jpg" alt="Homeowner looking across a residential rooftop with solar panels" /></div></section>
-     <section className="home-solar section"><div className="container"><div className="home-solar-heading"><div><div className="eyebrow">Rooftop solar, up close</div><h2>See what could fit your home.</h2></div><p>Illustrative solar imagery. A site assessment is needed to understand your property.</p></div><div className="home-solar-grid"><Link href="/solutions" className="home-solar-photo home-solar-wide" data-testid="link-home-solution"><img src="/images/panels-detail.jpg" alt="Illustrative close view of rooftop solar panels" /><span>Understand the system <ArrowRight size={18}/></span></Link><Link href="/projects" className="home-solar-photo" data-testid="link-home-gallery"><img src="/images/solar-home-hero.jpg" alt="Illustrative home with rooftop solar in a rural setting" /><span>Browse illustrative imagery <ArrowRight size={18}/></span></Link></div><p className="disclaimer home-gallery-note">Gallery imagery is illustrative only and does not represent completed Banas Energy projects.</p></div></section>
+     <section className="home-solar section"><div className="container"><div className="home-solar-heading"><div><div className="eyebrow">Rooftop solar, up close</div><h2>See what could fit your home.</h2></div><p>Banas Energy – Powering Your Property with Smart Solar Solutions. ☀️</p></div><div className="home-solar-grid"><Link href="/solutions" className="home-solar-photo home-solar-wide" data-testid="link-home-solution"><img src="/images/panels-detail.jpg" alt="Illustrative close view of rooftop solar panels" /><span>Understand the system <ArrowRight size={18}/></span></Link><Link href="/projects" className="home-solar-photo" data-testid="link-home-gallery"><img src="/images/solar-home-hero.jpg" alt="Illustrative home with rooftop solar in a rural setting" /><span>Browse illustrative imagery <ArrowRight size={18}/></span></Link></div><p className="disclaimer home-gallery-note">Harness the Power of the Sun with Banas Energy – Clean Energy, Lower Bills, Brighter Tomorrow.”</p></div></section>
      <section className="home-next section"><div className="container home-next-grid"><div><div className="eyebrow">Your next step</div><h2>Bring your questions.<br />We’ll start there.</h2><p>Share your bill, roof details or simply what you want to know.</p><a className="button-primary" data-testid="link-home-whatsapp" href={waLink('Hello Banas Energy, I would like to ask about rooftop solar for my home.')} target="_blank" rel="noreferrer">Message on WhatsApp <ArrowRight size={16}/></a></div><div className="home-facts"><div><span>01</span><p>Talk through your home and electricity use.</p></div><div><span>02</span><p>Understand the practical system choices.</p></div><div><span>03</span><p>Choose whether to explore a site assessment.</p></div></div></div></section>
-     <section className="home-trust"><div className="container home-trust-inner"><div><span className="eyebrow">Reviews, honestly</span><h2>Verified reviews are not published yet.</h2><p>We don’t invent testimonials or ratings. Ask us directly about your home.</p></div><Link className="text-link" href="/reviews" data-testid="link-home-reviews">Our reviews approach <ArrowRight size={16}/></Link></div></section>
+     <section className="home-trust"><div className="container home-trust-inner"><div><span className="eyebrow">Reviews, honestly</span><h2>Your Solar Journey Starts with Banas Energy.</h2><p>We don’t invent testimonials or ratings. Ask us directly about your home.</p></div><Link className="text-link" href="/reviews" data-testid="link-home-reviews">Our reviews approach <ArrowRight size={16}/></Link></div></section>
      <section className="home-contact section"><div className="container home-contact-grid"><div><div className="eyebrow">Local to Banaskantha</div><h2>Find Banas Energy.</h2><p>{ADDRESS}</p><div className="hero-actions"><Link href="/contact" className="button-primary" data-testid="link-home-contact">Contact us <ArrowRight size={16}/></Link><a className="button-secondary" data-testid="link-home-directions" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`} target="_blank" rel="noreferrer">Get directions <MapPin size={16}/></a></div></div><iframe title="Address-based map search for Banas Energy in Lakhani, Tharad, Banaskantha" loading="lazy" src={`https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`} /></div></section>
   </Shell>;
 }
@@ -207,27 +459,27 @@ function SolutionsPage() {
 }
 
 const projectImages = [
-  { image: '/images/home-evening.jpg', title: 'Home rooftop at dusk', details: 'An evening view of a home with rooftop panels, showing how a solar array can sit within the wider look of a residential property. Roof condition, usable area and shade still need a site-specific check.' },
-  { image: '/images/panels-detail.jpg', title: 'Panel layout on a residential roof', details: 'A closer look at panel rows and spacing. The final number, orientation and mounting arrangement depend on roof dimensions, access paths and the position of rooftop equipment.' },
-  { image: '/images/rooftops-aerial.jpg', title: 'Rooftop solar from above', details: 'An overhead view that helps illustrate how open roof zones and obstructions affect layout planning. This is a visual example, not a surveyed address or completed installation.' },
-  { image: '/images/homeowner-roof.jpg', title: 'A home-first solar conversation', details: 'A homeowner looking over a roof is a reminder to start with the property itself: its condition, access, shade and the household’s electricity use.' },
-  { image: '/images/inverter.jpg', title: 'Inverter equipment in a home', details: 'The inverter is one part of a rooftop system. Its placement and the required electrical protections should be decided with the property and proposed system in mind.' },
-  { image: '/images/solar-home-hero.jpg', title: 'Sunlit home with rooftop panels', details: 'A residential scene to help picture solar at home. System capacity, expected generation and savings cannot be inferred from an image; they require household and site details.' }
+  { image: '/images/deesa-ratnakar.jpeg', title: 'Deesa — Residential Rooftop Solar', details: 'A residential rooftop solar installation designed to make productive use of available roof space. Solar panels capture sunlight to support cleaner electricity generation at home.' },
+  { image: '/images/deesa-kailashnagar.jpeg', title: 'Deesa — Elevated Solar Installation', details: 'An elevated solar panel system that uses rooftop space while creating a covered area underneath. A practical approach to combining solar power generation with everyday terrace use.' },
+  { image: '/images/palanpur-sakar.jpeg', title: 'Palanpur — Residential Solar Power', details: 'A rooftop solar installation built around an elevated panel arrangement and sturdy supporting framework. The system harnesses available sunlight to help meet household electricity needs.' },
+  { image: '/images/ahmedabad-ankurrd.jpeg', title: 'Ahmedabad — Large Rooftop Panel Array', details: 'A rooftop solar array spanning a substantial portion of the available terrace. The elevated design provides space beneath the panels while putting the rooftop to productive use.' },
+  { image: '/images/ahmedabad-bhimjipura.jpeg', title: 'Ahmedabad — Solar Inverter & Electrical Setup', details: 'A residential solar electrical setup featuring an inverter and dedicated protection enclosures. These components help convert solar-generated electricity and manage the systems electrical connections.' },
+  { image: '/images/palanpur-sakarr.jpeg', title: 'Palanpur — Rooftop Solar Structure', details: 'A residential solar installation featuring an elevated panel structure above the rooftop. The setup uses available sunlight to generate electricity while retaining usable space beneath the panels.' }
 ];
 function ProjectsPage() {
   const [selected, setSelected] = useState<number | null>(null);
   return <Shell><Meta title="Illustrative rooftop solar gallery | Banas Energy" description="Illustrative residential rooftop solar imagery for homeowners. These are not Banas Energy installations or customer projects." />
-    <Intro eyebrow="A visual guide" title="Imagine what rooftop solar can look like." text="This gallery uses illustrative imagery to help make residential solar easier to picture. It does not show Banas Energy installations, actual customers or specific completed projects." image="/images/rooftops-aerial.jpg" />
-    <section className="section"><div className="container"><p className="disclaimer" style={{marginBottom:28}}><strong>Illustrative imagery only.</strong> Every image and card below is generated illustrative material. None represents work completed by Banas Energy, a named location, an actual customer or a specified system.</p><div className="project-grid">{projectImages.map(({ image, title, details },i)=><article className="project-card" key={title}><button onClick={()=>setSelected(i)} aria-label={`View illustrative image: ${title}`}><img src={image} alt={`Illustrative rooftop solar scene: ${title}`} /><div className="project-copy"><small>Illustrative imagery · not a Banas Energy project</small><h3>{title}</h3><p>{details}</p></div></button></article>)}</div></div></section>
-    {selected !== null && <div className="modal-backdrop" role="presentation" onClick={()=>setSelected(null)}><section className="detail-modal" role="dialog" aria-modal="true" aria-labelledby="gallery-title" onClick={e=>e.stopPropagation()}><button className="modal-close" aria-label="Close detail" onClick={()=>setSelected(null)}><X size={20}/></button><img src={projectImages[selected].image} alt={`Illustrative rooftop solar scene: ${projectImages[selected].title}`} /><div className="eyebrow">Illustrative imagery only</div><h2 id="gallery-title" className="serif" style={{fontSize:32,fontWeight:500,margin:'9px 0'}}>{projectImages[selected].title}</h2><p style={{lineHeight:1.7,color:'#75645e'}}>{projectImages[selected].details} This is not a Banas Energy installation or a customer project.</p><a className="button-primary" href={waLink(`Hello Banas Energy, I viewed the illustrative gallery and would like to discuss solar for my home.`)} target="_blank" rel="noreferrer">Ask about my home <ArrowRight size={16}/></a></section></div>}
+    <Intro eyebrow="A visual guide" title="Imagine what rooftop solar can look like." text="See how Banas Energy transforms rooftops with modern solar panels, smart installation designs, and clean energy solutions built for a brighter future." image="/images/rooftops-aerial.jpg" />
+    <section className="section"><div className="container"><p className="disclaimer" style={{marginBottom:28}}><strong>Solar Dreams.</strong> “Imagine Your Rooftop with Banas Energy — Smart Solar, Brighter Tomorrow.”</p><div className="project-grid">{projectImages.map(({ image, title, details },i)=><article className="project-card" key={title}><button onClick={()=>setSelected(i)} aria-label={`View illustrative image: ${title}`}><img src={image} alt={`Illustrative rooftop solar scene: ${title}`} /><div className="project-copy"><small>☀️ Clean & Renewable Energy · 🏠 Smart Rooftop Solar Solutions</small><h3>{title}</h3><p>{details}</p></div></button></article>)}</div></div></section>
+    {selected !== null && <div className="modal-backdrop" role="presentation" onClick={()=>setSelected(null)}><section className="detail-modal" role="dialog" aria-modal="true" aria-labelledby="gallery-title" onClick={e=>e.stopPropagation()}><button className="modal-close" aria-label="Close detail" onClick={()=>setSelected(null)}><X size={20}/></button><img src={projectImages[selected].image} alt={`Illustrative rooftop solar scene: ${projectImages[selected].title}`} /><div className="eyebrow">Banas Energy Solar Installations</div><h2 id="gallery-title" className="serif" style={{fontSize:32,fontWeight:500,margin:'9px 0'}}>{projectImages[selected].title}</h2><p style={{lineHeight:1.7,color:'#75645e'}}>{projectImages[selected].details} This is not a Banas Energy installation or a customer project.</p><a className="button-primary" href={waLink(`Hello Banas Energy, I viewed the illustrative gallery and would like to discuss solar for my home.`)} target="_blank" rel="noreferrer">Ask about my home <ArrowRight size={16}/></a></section></div>}
     <CTA title="Your home is its own project." text="Talk through your roof and household needs with a local team." />
   </Shell>;
 }
 
 function ReviewsPage() {
   return <Shell><Meta title="Homeowner reviews | Banas Energy" description="Banas Energy does not currently publish verified homeowner reviews. Contact the team directly with questions." />
-    <Intro eyebrow="Homeowner voices" title="Trust is better earned than borrowed." text="We do not publish testimonials or ratings until verified reviews are available. If you have questions, speak with Banas Energy directly." image="/images/home-evening.jpg" />
-    <section className="section"><div className="container"><div className="review-empty"><div className="review-empty-icon"><Check size={27}/></div><div className="eyebrow" style={{marginTop:20}}>An honest note</div><h2 className="serif" style={{fontSize:38,fontWeight:500,margin:'12px 0'}}>Verified reviews are not published yet.</h2><p style={{color:'#75645e',lineHeight:1.75,maxWidth:560,margin:'0 auto 25px'}}>We won’t invent customer stories or ratings. We’d rather answer your questions directly and help you understand what a solar conversation for your home could involve.</p><div style={{display:'flex',justifyContent:'center',gap:12,flexWrap:'wrap'}}><a className="button-primary" href={waLink('Hello Banas Energy, I have a question about residential rooftop solar.')} target="_blank" rel="noreferrer">Ask us on WhatsApp <ArrowRight size={16}/></a><a className="button-secondary" href={`tel:${PHONE.replace(/\s/g,'')}`}>Call {PHONE}</a></div></div></div></section>
+    <Intro eyebrow="Homeowner voices" title="Trust is better earned than borrowed." text="Installed solar with Banas Energy? Share your experience with us on WhatsApp and help others make the switch to clean energy!”" image="/images/home-evening.jpg" />
+    <section className="section"><div className="container"><div className="review-empty"><div className="review-empty-icon"><Check size={27}/></div><div className="eyebrow" style={{marginTop:20}}>YOUR SOLAR JOURNEY</div><h2 className="serif" style={{fontSize:38,fontWeight:500,margin:'12px 0'}}>Your Solar Journey Starts with Banas Energy.</h2><p style={{color:'#75645e',lineHeight:1.75,maxWidth:560,margin:'0 auto 25px'}}>Discover rooftop solar solutions designed around your property. Connect with Banas Energy to explore your solar requirements and take a confident step towards clean, renewable energy.</p><div style={{display:'flex',justifyContent:'center',gap:12,flexWrap:'wrap'}}><a className="button-primary" href={waLink('Hello Banas Energy, I have a question about residential rooftop solar.')} target="_blank" rel="noreferrer">Get Solar Guidance <ArrowRight size={16}/></a><a className="button-secondary" href={`tel:${PHONE.replace(/\s/g,'')}`}>Call {PHONE}</a></div></div></div></section>
     <CTA />
   </Shell>;
 }
@@ -244,7 +496,7 @@ function ArticlePage({ params }: { params: { slug?: string } }) {
   if (!article) return <NotFound />;
   return <Shell><Meta title={`${article.title} | Banas Energy homeowner guide`} description={article.intro} />
     <Intro eyebrow={`Homeowner guide · ${article.label}`} title={article.title} text={article.intro} image={article.image} />
-    <section className="section"><div className="container split" style={{alignItems:'start'}}><article className="prose">{article.sections.map(([title,body])=><section key={title}><h2>{title}</h2><p>{body}</p></section>)}<p>These general notes are for orientation, not a site-specific technical assessment or financial guarantee. A suitable system and its outcomes depend on the property and applicable requirements.</p><Link href="/blog" className="text-link"><ArrowRight size={16} style={{transform:'rotate(180deg)'}}/> All homeowner guides</Link></article><aside><div className="image-frame" style={{minHeight:320}}><img src={article.image} alt={`Illustrative residential solar scene related to ${article.title}`} /></div><div className="disclaimer" style={{marginTop:16}}>Illustrative imagery; not a depiction of Banas Energy work or a named customer.</div><div style={{marginTop:24}}><a className="button-primary" href={waLink(`Hello Banas Energy, I read “${article.title}” and have a question about rooftop solar for my home.`)} target="_blank" rel="noreferrer">Ask a follow-up <ArrowRight size={16}/></a></div></aside></div></section>
+    <section className="section"><div className="container split" style={{alignItems:'start'}}><article className="prose">{article.sections.map(([title,body])=><section key={title}><h2>{title}</h2><p>{body}</p></section>)}<p>These general notes are for orientation, not a site-specific technical assessment or financial guarantee. A suitable system and its outcomes depend on the property and applicable requirements.</p><Link href="/blog" className="text-link"><ArrowRight size={16} style={{transform:'rotate(180deg)'}}/> All homeowner guides</Link></article><aside><div className="image-frame" style={{minHeight:320}}><img src={article.image} alt={`Illustrative residential solar scene related to ${article.title}`} /></div><div className="disclaimer" style={{marginTop:16}}>Designed to Inspire a Brighter, Cleaner Energy Future.</div><div style={{marginTop:24}}><a className="button-primary" href={waLink(`Hello Banas Energy, I read “${article.title}” and have a question about rooftop solar for my home.`)} target="_blank" rel="noreferrer">Ask a follow-up <ArrowRight size={16}/></a></div></aside></div></section>
   </Shell>;
 }
 
